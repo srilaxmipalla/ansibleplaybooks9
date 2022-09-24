@@ -1,0 +1,10 @@
+--- # installing multiple s/ws
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: installing multiple packages
+      yum:
+        name: ['git', 'tree', 'docker', 'wget']
+        state: present
+

@@ -1,0 +1,5 @@
+--- # my first target playbook
+- hosts: webservers
+  user: ansible
+  become: yes
+  connection: ssh

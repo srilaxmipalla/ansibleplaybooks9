@@ -1,0 +1,15 @@
+--- # creating users by calling useryml file
+- hosts: all
+  become: yes
+
+  vars_files:
+    - varsuser.yml
+
+  tasks:
+    - name: creating user {{user1}}
+      user:
+        name: '{{user1}}'
+        state: present
+
+
+

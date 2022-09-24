@@ -1,0 +1,36 @@
+--- # download tomcat and install tomcat and java
+- hosts: all
+  become: yes
+  tasks:
+    - name: update os
+      yum:
+        name: '*'
+        state: latest
+    - name: install java s/w
+      yum:
+        name: java
+        state: present
+      when: ansible_os_family == "RedHat"
+    - name: install java in Debian
+      apt:
+        name: default-jdk
+        state: present
+      when: ansible_os_family == "Debian"
+    - name: Download tomcat package
+      get_url:
+          url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.82/bin/apache-tomcat-8.5.82.tar.gz
+          dest: /opt
+    - name: extract the tar-zip for tomcat s/w
+      unarchive:
+           src: /opt/apache-tomcat-8.5.82.tar.gz
+           dest: /opt
+           remote_src: yes
+    - name: providing executable permissions 
+      file:
+        path: /opt/apache-tomcat-8.5.82/bin/startup.sh
+        mode: 0777
+    - name: start tomcat service
+      shell: nohup ./startup.sh
+      args:
+        chdir: /opt/apache-tomcat-8.5.82/bin
+

@@ -1,0 +1,17 @@
+--- # creating handlers section playbook
+- hosts: all
+  become: yes
+  user: ansible
+  connection: ssh
+
+  tasks:
+    - name: install httpd s/w
+      action: yum name=httpd state=present
+      notify: service httpd start
+
+  handlers: 
+    - name: service httpd start
+      service:
+        name: httpd
+        state: started
+        enabled: yes

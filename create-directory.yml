@@ -1,0 +1,10 @@
+--- # creating a directory
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: creating a directory
+      file:
+        path: /home/ansible/eveningdirectory
+        state: directory
+

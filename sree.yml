@@ -1,0 +1,9 @@
+--- # this is vault playbook
+- hosts: all
+  become: yes
+  tasks:
+    - name: install sql s/w
+      yum:
+        name: sql
+        state: present
+

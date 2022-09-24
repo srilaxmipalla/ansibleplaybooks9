@@ -1,0 +1,21 @@
+--- # conditionals playbook
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: install httpd in redhat
+      command: yum install httpd -y
+      when: ansible_os_family == "RedHat"
+
+    - name: install apache2 in Debian
+      action: apt name=apache2 state=present
+      when: ansible_os_family == "Debian"
+
+    - name: start the service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+
+

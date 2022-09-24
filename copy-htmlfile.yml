@@ -1,0 +1,11 @@
+--- # copying index.html file to hosts
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: copying index.html file to hosts html flder
+      copy:
+        src: /home/ansible/index.html
+        dest: /var/www/html
+        owner: venkat
+        mode: 0777

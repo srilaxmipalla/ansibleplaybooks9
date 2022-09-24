@@ -1,0 +1,14 @@
+--- # tasks playbook
+- hosts: webservers
+  user: ansible
+  become: true
+  connection: ssh
+
+  tasks:
+    - name: installing httpd s/w
+      action: yum pkg=httpd state=present
+      ignore_errors: yes
+
+    - name: install tree s/w
+      action : yum name=tree state=installed  
+

@@ -1,0 +1,11 @@
+--- # variable section playbook
+- hosts: all
+  become: true
+
+  vars:
+    pkgname: git
+
+  tasks:
+    - name: installing git s/w
+      action: yum name='{{pkgname}}' state=latest
+
